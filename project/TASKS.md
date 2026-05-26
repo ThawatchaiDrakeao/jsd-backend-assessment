@@ -33,4 +33,22 @@ PHASE 2 — GET Products Routes
 - [x] Create GET /products/:id
 - [x] Handle product not found with 404
 - [x] Test routes in browser/Postman/REST Client
-- [ ] Git commit phase 2
+- [x] Git commit phase 2
+
+
+---
+
+## Current Phase
+PHASE 3 — POST Create Product
+
+## Progress Checklist
+
+- [x] Create POST /products
+- [x] Read data from req.body
+- [x] Validate name is required
+- [x] Validate price is required
+- [x] Set quantity default to 1
+- [x] Generate new product id
+- [x] Return status 201 when created
+- [x] Test POST route
+- [ ] Git commit phase 3

@@ -26,7 +26,8 @@ Content-Type: application/json
 
 {
   "name": "Laptop Stand",
-  "price": 39.99
+  "price": 39.99,
+  "quantity": 2
 }
 
 ### Try to create an invalid product

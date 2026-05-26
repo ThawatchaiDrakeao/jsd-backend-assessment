@@ -40,6 +40,31 @@ app.get("/products", (req, res) => {
   });
 });
 
+app.post("/products", (req, res) => {
+  const { name, price, quantity } = req.body;
+
+  if (!name || !price) {
+    return res.status(400).json({
+      success: false,
+      message: "Name and price are required",
+    });
+  }
+
+  const newProduct = {
+    id: String(Date.now()),
+    name: name,
+    price: price,
+    quantity: quantity || 1,
+  };
+
+  products.push(newProduct);
+
+  res.status(201).json({
+    success: true,
+    data: newProduct,
+  });
+});
+
 app.get("/products/:id", (req, res) => {
   const product = products.find((currentProduct) => {
     return currentProduct.id === req.params.id;
