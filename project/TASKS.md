@@ -69,4 +69,20 @@ PHASE 4 — PATCH Update Product
 - [x] Validate price and quantity if provided
 - [x] Return updated product
 - [x] Test PATCH route
-- [ ] Git commit phase 4
+- [x] Git commit phase 4
+
+---
+
+## Current Phase
+PHASE 5 — DELETE Product
+
+## Progress Checklist
+
+- [x] Create DELETE /products/:id
+- [x] Read product id from req.params
+- [x] Find product index by id
+- [x] Return 404 if product not found
+- [x] Remove product from products array
+- [x] Return success message
+- [x] Test DELETE route
+- [ ] Git commit phase 5

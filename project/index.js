@@ -133,6 +133,27 @@ app.patch("/products/:id", (req, res) => {
   });
 });
 
+app.delete("/products/:id", (req, res) => {
+  const productId = req.params.id;
+  const productIndex = products.findIndex((currentProduct) => {
+    return currentProduct.id === productId;
+  });
+
+  if (productIndex === -1) {
+    return res.status(404).json({
+      success: false,
+      message: "Product not found",
+    });
+  }
+
+  products.splice(productIndex, 1);
+
+  res.json({
+    success: true,
+    message: "Product deleted successfully",
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
