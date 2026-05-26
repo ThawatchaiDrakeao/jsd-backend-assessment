@@ -10,7 +10,7 @@ PHASE 1 — Project Setup
 - [x] Create basic server
 - [x] Setup express.json()
 - [x] Run server on port 3000
-- [ ] First git commit
+- [x] First git commit
 
 ---
 
@@ -21,3 +21,16 @@ PHASE 1 — Project Setup
 - Use CommonJS
 - Use clean JSON responses
 - Explain important concepts
+ 
+
+ ## Current Phase
+PHASE 2 — GET Products Routes
+
+## Progress Checklist
+
+- [x] Create in-memory products array
+- [x] Create GET /products
+- [x] Create GET /products/:id
+- [x] Handle product not found with 404
+- [x] Test routes in browser/Postman/REST Client
+- [ ] Git commit phase 2
