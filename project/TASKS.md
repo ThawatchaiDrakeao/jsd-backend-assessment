@@ -119,4 +119,22 @@ PHASE 7 — Requests File and Final Testing
 - [x] Add DELETE /products/:id test
 - [x] Add 404 unknown route test
 - [x] Run all tests
-- [ ] Git commit phase 7
+- [x] Git commit phase 7
+
+
+---
+
+## Current Phase
+PHASE 8 — My Understanding Document
+
+## Progress Checklist
+
+- [x] Create my-understanding.md
+- [x] Read MY_UNDERSTANDING_TEMPLATE.md
+- [x] Answer all questions in your own words
+- [x] Explain HTTP methods
+- [x] Explain express.json()
+- [x] Explain req.params, req.body, req.query
+- [x] Explain middleware
+- [x] Explain error handling
+- [ ] Git commit phase 8

@@ -1,258 +1,190 @@
-# My Understanding / ความเข้าใจของฉัน
+# My Understanding / ความเข้าใจของผม
 
 ## Submission Links / ลิงก์สำหรับส่งงาน
 
 **Loom Video (must be set to public - anyone with the link):**  
 [paste your Loom video URL here]
 
-**วิดีโอ Loom (ต้องตั้งค่าเป็น public - anyone with the link):**  
-[วางลิงก์ Loom ของคุณตรงนี้]
-
----
-
-## Questions / คำถาม
-
-Answer each question in your own words before submitting.
-
-ตอบแต่ละข้อด้วยคำพูดของตัวเองก่อนส่งงาน ไฟล์นี้มีทั้งภาษาอังกฤษและภาษาไทย เพื่อช่วยให้เข้าใจและเตรียมพูดอธิบายในวิดีโอได้ง่ายขึ้น
+**วิดีโอ Loom:**  
+[วางลิงก์ Loom ตรงนี้]
 
 ---
 
 ## 1. HTTP Methods
 
-**Question:**  
-What does each HTTP method in your API mean - GET, POST, PUT or PATCH, and DELETE? Why do we use different methods instead of just using POST for everything?
-
-**คำถามภาษาไทย:**  
-HTTP method แต่ละตัวใน API หมายถึงอะไร เช่น GET, POST, PUT หรือ PATCH, และ DELETE? ทำไมเราต้องใช้หลาย method แทนที่จะใช้ POST อย่างเดียว?
-
 **English answer:**  
-GET asks the server to read data.
+In my API, each HTTP method tells the server what action I want to do.
 
-In my API, `GET /products` reads all products, and `GET /products/:id` reads one product by id.
+`GET` means read data. I use `GET /products` to get all products and `GET /products/:id` to get one product.
 
-POST creates a new product.
+`POST` means create new data. I use `POST /products` to create a new product.
 
-PATCH updates part of an existing product.
+`PATCH` means update part of existing data. I use `PATCH /products/:id` when I only want to change some fields, like price or quantity.
 
-DELETE removes a product.
+`DELETE` means remove data. I use `DELETE /products/:id` to delete one product.
 
-We use different methods because they describe the purpose of the request clearly. This makes the API easier to understand and helps the client know what action is happening.
+We use different methods because the API becomes clearer. If everything used only POST, it would be harder to understand what each route is supposed to do.
 
 **คำตอบภาษาไทย:**  
-GET ใช้ขอข้อมูลจาก server
+ใน API ของผม HTTP method แต่ละตัวใช้บอก server ว่าผมต้องการทำอะไร
 
-ใน API ของฉัน `GET /products` ใช้ดึงสินค้าทั้งหมด และ `GET /products/:id` ใช้ดึงสินค้าหนึ่งรายการตาม id
+`GET` คือการอ่านข้อมูล เช่น `GET /products` ใช้ดูสินค้าทั้งหมด และ `GET /products/:id` ใช้ดูสินค้าหนึ่งรายการ
 
-POST ใช้สร้างสินค้าใหม่
+`POST` คือการสร้างข้อมูลใหม่ เช่น `POST /products` ใช้สร้างสินค้าใหม่
 
-PATCH ใช้อัปเดตข้อมูลบางส่วนของสินค้าที่มีอยู่แล้ว
+`PATCH` คือการแก้ไขข้อมูลบางส่วน เช่น `PATCH /products/:id` ใช้แก้แค่บาง field เช่น price หรือ quantity
 
-DELETE ใช้ลบสินค้า
+`DELETE` คือการลบข้อมูล เช่น `DELETE /products/:id` ใช้ลบสินค้าหนึ่งรายการ
 
-เราใช้ method ที่ต่างกัน เพราะแต่ละ method บอกจุดประสงค์ของ request ชัดเจน ทำให้ API อ่านง่าย เข้าใจง่าย และฝั่ง client รู้ว่ากำลังสั่งให้ server ทำอะไร
+เราใช้หลาย method เพราะทำให้ API อ่านง่ายและเข้าใจง่าย ถ้าใช้ POST อย่างเดียวทุกอย่างจะดูไม่ชัดว่า route นั้นกำลังอ่าน สร้าง แก้ไข หรือลบข้อมูล
 
 ---
 
 ## 2. express.json()
 
-**Question:**  
-What is `express.json()` and what would happen if you left it out?
-
-**คำถามภาษาไทย:**  
-`express.json()` คืออะไร และถ้าไม่ใส่จะเกิดอะไรขึ้น?
-
 **English answer:**  
-`express.json()` is middleware that reads JSON from the request body.
+`express.json()` is middleware that lets Express read JSON data from the request body.
 
-It turns that JSON into `req.body`, so my routes can use values like `req.body.name`, `req.body.price`, and `req.body.quantity`.
+In this project, `POST /products` and `PATCH /products/:id` need JSON data from the client, such as `name`, `price`, and `quantity`.
 
-Without `express.json()`, Express would not understand the JSON sent by POST or PATCH requests.
-
-That means `req.body` would not work correctly.
+If I leave out `express.json()`, `req.body` will not contain the JSON data correctly, so the server cannot create or update products properly.
 
 **คำตอบภาษาไทย:**  
-`express.json()` คือ middleware ที่ช่วยให้ Express อ่านข้อมูล JSON ที่ส่งมาใน body ของ request
+`express.json()` คือ middleware ที่ช่วยให้ Express อ่านข้อมูล JSON ที่ client ส่งมาใน request body ได้
 
-มันแปลง JSON นั้นให้เราใช้งานผ่าน `req.body` ได้ เช่น `req.body.name`, `req.body.price`, และ `req.body.quantity`
+ในโปรเจกต์นี้ `POST /products` และ `PATCH /products/:id` ต้องใช้ข้อมูล JSON เช่น `name`, `price`, และ `quantity`
 
-ถ้าไม่ใส่ `express.json()` เวลาใช้ POST หรือ PATCH แล้วส่ง JSON เข้ามา Express จะอ่านข้อมูลนั้นไม่ได้
-
-ผลคือ `req.body` จะใช้งานไม่ถูกต้อง
+ถ้าไม่มี `express.json()` ค่าใน `req.body` จะอ่านไม่ได้ถูกต้อง ทำให้ server สร้างหรือแก้ไขสินค้าไม่ได้ตามที่ต้องการ
 
 ---
 
 ## 3. req.body, req.params, and req.query
 
-**Question:**  
-What is the difference between `req.body`, `req.params`, and `req.query`? Give a real example from your API for each one.
-
-**คำถามภาษาไทย:**  
-`req.body`, `req.params`, และ `req.query` ต่างกันอย่างไร? ยกตัวอย่างจริงจาก API ของคุณ
-
 **English answer:**  
-`req.body` is data sent in the body of the request.
+`req.body` is data sent inside the request body. In this API, `POST /products` reads `name`, `price`, and `quantity` from `req.body`.
 
-Example: when creating a product with `POST /products`, the name, price, and quantity come from `req.body`.
+`req.params` is data from the route path. For example, in `GET /products/1`, the `1` is stored in `req.params.id`.
 
-`req.params` is data from the route path.
-
-Example: in `/products/1`, the `1` is the product id from `req.params.id`.
-
-`req.query` is optional data after a question mark in the URL.
-
-Example: `/products?name=key` uses `req.query.name` to filter products by name.
+`req.query` is data after `?` in the URL. The final version of my API does not use `req.query`, but an example would be `/products?name=keyboard`, where `name` would come from `req.query.name`.
 
 **คำตอบภาษาไทย:**  
-`req.body` คือข้อมูลที่ส่งมาใน body ของ request
+`req.body` คือข้อมูลที่ส่งมาใน body ของ request เช่นใน `POST /products` ผมอ่าน `name`, `price`, และ `quantity` จาก `req.body`
 
-ตัวอย่างเช่น ตอนสร้างสินค้าด้วย `POST /products` ข้อมูล name, price, และ quantity จะมาจาก `req.body`
+`req.params` คือข้อมูลที่อยู่ใน path ของ route เช่น `GET /products/1` เลข `1` จะอยู่ใน `req.params.id`
 
-`req.params` คือข้อมูลที่อยู่ใน path ของ route
-
-ตัวอย่างเช่น ใน `/products/1` เลข `1` คือ product id ที่อ่านจาก `req.params.id`
-
-`req.query` คือข้อมูลเสริมที่อยู่หลังเครื่องหมาย `?` ใน URL
-
-ตัวอย่างเช่น `/products?name=key` ใช้ `req.query.name` เพื่อกรองสินค้าตามชื่อ
+`req.query` คือข้อมูลที่อยู่หลังเครื่องหมาย `?` ใน URL โปรเจกต์เวอร์ชันสุดท้ายของผมยังไม่ได้ใช้ `req.query` แต่ตัวอย่างคือ `/products?name=keyboard` ซึ่ง `name` จะอ่านได้จาก `req.query.name`
 
 ---
 
 ## 4. HTTP Status Codes
 
-**Question:**  
-What are HTTP status codes? List every status code you used in your API and explain why you chose it for that situation.
-
-**คำถามภาษาไทย:**  
-HTTP status code คืออะไร? บอก status code ทุกตัวที่ใช้ใน API และอธิบายว่าทำไมถึงเลือกใช้ในสถานการณ์นั้น
-
 **English answer:**  
-HTTP status codes tell the client what happened after a request.
+HTTP status codes tell the client what happened after the request.
 
-I used `200` when a request worked normally, such as getting, updating, or deleting a product.
+I use `200` when the request works normally, such as getting products, updating a product, or deleting a product.
 
-I used `201` when a new product was created.
+I use `201` when a new product is created by `POST /products`.
 
-I used `400` when the client sent invalid input, such as missing name or price.
+I use `400` when the client sends invalid data, such as missing `name` or `price`, or sending an invalid `price` or `quantity`.
 
-I used `404` when a product or route could not be found.
+I use `404` when the product id does not exist, or when the user visits an unknown route.
 
-I used `500` in the error middleware for unexpected server errors.
+I use `500` in the global error handler for unexpected server errors.
 
 **คำตอบภาษาไทย:**  
 HTTP status code คือรหัสที่ server ส่งกลับไปบอก client ว่า request นั้นเกิดอะไรขึ้น
 
-ฉันใช้ `200` เมื่อ request สำเร็จตามปกติ เช่น ดึงข้อมูล แก้ไข หรือลบสินค้า
+ผมใช้ `200` เมื่อ request สำเร็จตามปกติ เช่น ดึงข้อมูลสินค้า แก้ไขสินค้า หรือลบสินค้า
 
-ฉันใช้ `201` เมื่อสร้างสินค้าใหม่สำเร็จ
+ผมใช้ `201` เมื่อสร้างสินค้าใหม่สำเร็จจาก `POST /products`
 
-ฉันใช้ `400` เมื่อ client ส่งข้อมูลไม่ถูกต้อง เช่น ไม่ส่ง name หรือ price
+ผมใช้ `400` เมื่อ client ส่งข้อมูลไม่ถูกต้อง เช่น ไม่ส่ง `name` หรือ `price` หรือส่ง `price` / `quantity` ที่ไม่ถูกต้อง
 
-ฉันใช้ `404` เมื่อไม่พบสินค้าหรือไม่พบ route
+ผมใช้ `404` เมื่อหา product id ไม่เจอ หรือเข้าถึง route ที่ไม่มีอยู่
 
-ฉันใช้ `500` ใน error middleware สำหรับ error ที่ไม่คาดคิดจากฝั่ง server
+ผมใช้ `500` ใน global error handler สำหรับ error ที่ไม่คาดคิดจากฝั่ง server
 
 ---
 
 ## 5. Middleware
 
-**Question:**  
-What is middleware? Describe what it does in your own words and give one example from your code.
-
-**คำถามภาษาไทย:**  
-middleware คืออะไร? อธิบายด้วยคำพูดของตัวเอง และยกตัวอย่างจากโค้ดของคุณ
-
 **English answer:**  
-Middleware is code that runs during the request and response cycle.
+Middleware is code that runs between the request coming in and the response going out.
 
-It can inspect the request, change something, log information, or stop the request by sending a response.
+In my project, I have a logger middleware near the top of `index.js`. It logs the timestamp, request method, and request URL.
 
-One example in my code is the logger middleware.
-
-It logs the request method and URL before passing the request to the next middleware or route.
+After logging, it calls `next()` so Express can continue to the next middleware or route.
 
 **คำตอบภาษาไทย:**  
-Middleware คือโค้ดที่ทำงานระหว่างที่ request เข้ามาและก่อนที่ response จะถูกส่งกลับไป
+Middleware คือโค้ดที่ทำงานระหว่างตอน request เข้ามาและก่อน response ถูกส่งกลับไป
 
-มันสามารถตรวจสอบ request แก้ไขข้อมูลบางอย่าง log ข้อมูล หรือหยุด request แล้วส่ง response กลับได้
+ในโปรเจกต์ของผมมี logger middleware อยู่ด้านบนของ `index.js` ใช้ log เวลา, method, และ URL ของ request
 
-ตัวอย่างในโค้ดของฉันคือ logger middleware
-
-มันแสดง method และ URL ของ request ก่อนส่งต่อไปยัง middleware หรือ route ถัดไป
+หลังจาก log แล้วจะเรียก `next()` เพื่อให้ Express ทำงานต่อไปยัง middleware หรือ route ถัดไป
 
 ---
 
 ## 6. Middleware Order
 
-**Question:**  
-Why does the order of middleware matter in Express? What could go wrong if it were in the wrong order?
-
-**คำถามภาษาไทย:**  
-ทำไมลำดับของ middleware ใน Express ถึงสำคัญ? ถ้าเรียงผิดอาจเกิดอะไรขึ้น?
-
 **English answer:**  
-Order matters because Express runs middleware from top to bottom.
+Middleware order matters because Express runs code from top to bottom.
 
-`express.json()` must run before routes that use `req.body`.
+The logger should be near the top so it can log every request.
 
-The error handler should be near the end, after the routes, because it handles problems that happen while processing requests.
+`express.json()` must be before `POST` and `PATCH` routes because those routes need `req.body`.
 
-If middleware is in the wrong order, routes might not receive the data they need, or errors might not be handled properly.
+The 404 handler must be after all real routes, because it should only run when no route matches.
+
+The global error handler should be at the end because it catches errors after other route logic runs.
 
 **คำตอบภาษาไทย:**  
-ลำดับสำคัญเพราะ Express ทำงานจากบนลงล่าง
+ลำดับของ middleware สำคัญ เพราะ Express ทำงานจากบนลงล่าง
 
-`express.json()` ต้องอยู่ก่อน route ที่ใช้ `req.body`
+logger ควรอยู่ด้านบน เพื่อให้ log ได้ทุก request
 
-error handler ควรอยู่ท้าย ๆ หลัง routes เพราะมันมีหน้าที่จัดการ error ที่เกิดขึ้นระหว่างประมวลผล request
+`express.json()` ต้องอยู่ก่อน `POST` และ `PATCH` เพราะ route เหล่านั้นต้องใช้ `req.body`
 
-ถ้าเรียง middleware ผิด route อาจไม่ได้ข้อมูลที่ต้องใช้ หรือ error อาจไม่ถูกจัดการอย่างถูกต้อง
+404 handler ต้องอยู่หลัง route จริงทั้งหมด เพราะควรทำงานเฉพาะตอนที่ไม่มี route ไหนตรงกับ request
+
+global error handler ควรอยู่ท้ายสุด เพื่อจัดการ error หลังจาก route หรือ middleware อื่นทำงานแล้ว
 
 ---
 
 ## 7. POST /products Flow
 
-**Question:**  
-Walk through what happens on the server, step by step, when a POST request is sent to `/products`.
-
-**คำถามภาษาไทย:**  
-อธิบายทีละขั้นตอนว่าเกิดอะไรขึ้นบน server เมื่อมี POST request ส่งไปที่ `/products`
-
 **English answer:**  
-First, the request reaches the logger middleware, which prints the method and URL.
+When a client sends `POST /products`, the request first goes through the logger middleware.
 
-Then `express.json()` reads the JSON body and creates `req.body`.
+Then `express.json()` reads the JSON body and makes it available as `req.body`.
 
-Next, the `POST /products` route runs.
+The route reads `name`, `price`, and `quantity` from `req.body`.
 
-The route validates that the name and price are valid.
+If `name` or `price` is missing, the API returns status `400` with an error message.
 
-If quantity was not sent, the route gives it a default value of `1`.
+If the data is valid, the route creates a new id with `String(Date.now())`.
 
-Then it creates a new product with an id, pushes it into the products array, and returns the new product with a `201` status code.
+If `quantity` is not provided, it uses `1`.
+
+Then the new product is pushed into the `products` array, and the API returns status `201` with the new product.
 
 **คำตอบภาษาไทย:**  
-ขั้นแรก request จะผ่าน logger middleware ซึ่งแสดง method และ URL ออกมา
+เมื่อ client ส่ง `POST /products` request จะผ่าน logger middleware ก่อน
 
-จากนั้น `express.json()` จะอ่าน JSON body และสร้าง `req.body` ให้ใช้งาน
+จากนั้น `express.json()` จะอ่าน JSON body และทำให้เราใช้ข้อมูลผ่าน `req.body` ได้
 
-ต่อมา route `POST /products` จะทำงาน
+route จะอ่าน `name`, `price`, และ `quantity` จาก `req.body`
 
-route จะตรวจสอบว่า name และ price ถูกต้องหรือไม่
+ถ้าไม่มี `name` หรือ `price` API จะตอบ `400` พร้อม error message
 
-ถ้าไม่ได้ส่ง quantity มา route จะกำหนดค่า default เป็น `1`
+ถ้าข้อมูลถูกต้อง route จะสร้าง id ใหม่ด้วย `String(Date.now())`
 
-จากนั้นจะสร้าง product ใหม่พร้อม id เพิ่มเข้าไปใน array `products` แล้วส่ง product ที่สร้างใหม่กลับไปพร้อม status code `201`
+ถ้าไม่ได้ส่ง `quantity` มา จะใช้ค่า default เป็น `1`
+
+จากนั้นจะเพิ่มสินค้าใหม่เข้าไปใน `products` array และตอบกลับด้วย status `201` พร้อมข้อมูลสินค้าใหม่
 
 ---
 
 ## 8. CRUD
-
-**Question:**  
-What is CRUD? Map each operation to the HTTP method and route you used in your API.
-
-**คำถามภาษาไทย:**  
-CRUD คืออะไร? จับคู่แต่ละ operation กับ HTTP method และ route ที่ใช้ใน API ของคุณ
 
 **English answer:**  
 CRUD means Create, Read, Update, and Delete.
@@ -265,6 +197,8 @@ Update is `PATCH /products/:id`.
 
 Delete is `DELETE /products/:id`.
 
+This project is a small CRUD API for products, using an in-memory array instead of a database.
+
 **คำตอบภาษาไทย:**  
 CRUD ย่อมาจาก Create, Read, Update, Delete หรือ สร้าง อ่าน แก้ไข ลบ
 
@@ -276,54 +210,76 @@ Update คือ `PATCH /products/:id`
 
 Delete คือ `DELETE /products/:id`
 
+โปรเจกต์นี้เป็น CRUD API ขนาดเล็กสำหรับสินค้า โดยใช้ array ใน memory แทน database
+
 ---
 
 ## 9. Error Response
 
-**Question:**  
-How does your API respond when something goes wrong - for example, when a product with a given ID does not exist?
-
-**คำถามภาษาไทย:**  
-API ของคุณตอบกลับอย่างไรเมื่อเกิดข้อผิดพลาด เช่น ไม่พบสินค้าตาม id ที่ส่งมา
-
 **English answer:**  
-The API responds with a consistent JSON error format.
+When something goes wrong, my API returns JSON with `success: false` and a message.
 
-For example, if a product does not exist, it returns status `404`.
+For example, if I request `GET /products/999` and that product does not exist, the API returns status `404` with:
 
-The response body is `{ "success": false, "message": "Product not found" }`.
+```json
+{
+  "success": false,
+  "message": "Product not found"
+}
+```
 
-This helps the client understand that the request was received, but the specific product could not be found.
+For an unknown route, the API returns `404` with:
+
+```json
+{
+  "success": false,
+  "message": "Something went wrong"
+}
+```
 
 **คำตอบภาษาไทย:**  
-API จะตอบกลับด้วยรูปแบบ JSON สำหรับ error ที่เหมือนกันทุกครั้ง
+เมื่อมีบางอย่างผิดพลาด API ของผมจะตอบกลับเป็น JSON ที่มี `success: false` และมีข้อความอธิบาย
 
-ตัวอย่างเช่น ถ้าไม่พบสินค้า จะส่ง status `404`
+ตัวอย่างเช่น ถ้าเรียก `GET /products/999` แล้วไม่มีสินค้านั้น API จะตอบ status `404` พร้อม:
 
-response body คือ `{ "success": false, "message": "Product not found" }`
+```json
+{
+  "success": false,
+  "message": "Product not found"
+}
+```
 
-วิธีนี้ช่วยให้ client เข้าใจว่า server ได้รับ request แล้ว แต่ไม่พบสินค้าที่ต้องการ
+ถ้าเป็น route ที่ไม่มีอยู่ API จะตอบ `404` พร้อม:
+
+```json
+{
+  "success": false,
+  "message": "Something went wrong"
+}
+```
 
 ---
 
 ## 10. Hardest Part
 
-**Question:**  
-What was the hardest part of building this API and what did you do to get past it?
-
-**คำถามภาษาไทย:**  
-ส่วนที่ยากที่สุดในการสร้าง API นี้คืออะไร และคุณแก้ปัญหานั้นอย่างไร?
-
 **English answer:**  
-The hardest part was making sure each route returned the right status code and error message.
+The hardest part for me was remembering which data comes from `req.body` and which data comes from `req.params`.
 
-I worked through it by thinking about what each request is trying to do.
+I got past it by connecting each one to a real example.
 
-Then I chose a response that matches the situation, such as success, created, invalid input, or not found.
+If the value is in the URL path, like `/products/1`, I use `req.params`.
+
+If the value is sent as JSON, like when creating or updating a product, I use `req.body`.
+
+Another hard part was choosing the correct status code, so I checked each situation: success, created, invalid input, not found, or server error.
 
 **คำตอบภาษาไทย:**  
-ส่วนที่ยากที่สุดคือการทำให้แต่ละ route ส่ง status code และ error message ให้ถูกกับสถานการณ์
+ส่วนที่ยากที่สุดสำหรับผมคือการจำว่าอะไรควรมาจาก `req.body` และอะไรควรมาจาก `req.params`
 
-ฉันแก้ปัญหาโดยคิดก่อนว่า request นั้นต้องการทำอะไร
+ผมแก้โดยผูกกับตัวอย่างจริงในโปรเจกต์
 
-จากนั้นเลือก response ให้ตรงกับผลลัพธ์ เช่น สำเร็จ สร้างข้อมูลใหม่ ข้อมูลไม่ถูกต้อง หรือไม่พบข้อมูล
+ถ้าค่าอยู่ใน URL path เช่น `/products/1` ผมใช้ `req.params`
+
+ถ้าค่าส่งมาเป็น JSON เช่นตอนสร้างหรือแก้ไขสินค้า ผมใช้ `req.body`
+
+อีกส่วนที่ยากคือการเลือก status code ให้ถูกต้อง ผมเลยดูตามสถานการณ์ เช่น สำเร็จ, สร้างใหม่, ข้อมูลผิด, ไม่พบข้อมูล, หรือ server error
