@@ -101,4 +101,22 @@ PHASE 6 — Middleware and Error Handling
 - [x] Add global error handling middleware
 - [x] Keep response format consistent
 - [x] Test unknown route
-- [ ] Git commit phase 6
+- [x] Git commit phase 6
+ 
+
+ ---
+
+## Current Phase
+PHASE 7 — Requests File and Final Testing
+
+## Progress Checklist
+
+- [x] Create requests.http
+- [x] Add GET /products test
+- [x] Add GET /products/:id test
+- [x] Add POST /products test
+- [x] Add PATCH /products/:id test
+- [x] Add DELETE /products/:id test
+- [x] Add 404 unknown route test
+- [x] Run all tests
+- [ ] Git commit phase 7
