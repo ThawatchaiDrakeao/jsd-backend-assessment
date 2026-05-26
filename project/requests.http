@@ -1,0 +1,54 @@
+### Check server
+GET http://localhost:3000/
+
+### Get all products
+GET http://localhost:3000/products
+
+### Filter products by name query string
+GET http://localhost:3000/products?name=key
+
+### Get one product by id
+GET http://localhost:3000/products/1
+
+### Create a product
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "Monitor",
+  "price": 199.99,
+  "quantity": 1
+}
+
+### Create a product without quantity, so quantity defaults to 1
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "Laptop Stand",
+  "price": 39.99
+}
+
+### Try to create an invalid product
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": 10
+}
+
+### Update part of a product
+PATCH http://localhost:3000/products/1
+Content-Type: application/json
+
+{
+  "price": 44.99,
+  "quantity": 3
+}
+
+### Delete a product
+DELETE http://localhost:3000/products/2
+
+### Try to get a product that does not exist
+GET http://localhost:3000/products/not-found
