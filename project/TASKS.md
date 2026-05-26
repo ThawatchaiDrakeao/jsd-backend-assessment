@@ -51,4 +51,22 @@ PHASE 3 — POST Create Product
 - [x] Generate new product id
 - [x] Return status 201 when created
 - [x] Test POST route
-- [ ] Git commit phase 3
+- [x] Git commit phase 3
+
+---
+
+## Current Phase
+PHASE 4 — PATCH Update Product
+
+## Progress Checklist
+
+- [x] Create PATCH /products/:id
+- [x] Read product id from req.params
+- [x] Find product by id
+- [x] Return 404 if product not found
+- [x] Read update data from req.body
+- [x] Update only provided fields
+- [x] Validate price and quantity if provided
+- [x] Return updated product
+- [x] Test PATCH route
+- [ ] Git commit phase 4

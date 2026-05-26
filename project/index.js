@@ -83,6 +83,56 @@ app.get("/products/:id", (req, res) => {
   });
 });
 
+app.patch("/products/:id", (req, res) => {
+  const productId = req.params.id;
+  const product = products.find((currentProduct) => {
+    return currentProduct.id === productId;
+  });
+
+  if (!product) {
+    return res.status(404).json({
+      success: false,
+      message: "Product not found",
+    });
+  }
+
+  const { name, price, quantity } = req.body;
+
+  if (price !== undefined && (typeof price !== "number" || price <= 0)) {
+    return res.status(400).json({
+      success: false,
+      message: "Price must be a positive number",
+    });
+  }
+
+  if (
+    quantity !== undefined &&
+    (typeof quantity !== "number" || quantity <= 0)
+  ) {
+    return res.status(400).json({
+      success: false,
+      message: "Quantity must be a positive number",
+    });
+  }
+
+  if (name !== undefined) {
+    product.name = name;
+  }
+
+  if (price !== undefined) {
+    product.price = price;
+  }
+
+  if (quantity !== undefined) {
+    product.quantity = quantity;
+  }
+
+  res.json({
+    success: true,
+    data: product,
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
