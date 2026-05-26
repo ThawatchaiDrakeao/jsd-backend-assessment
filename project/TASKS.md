@@ -85,4 +85,20 @@ PHASE 5 — DELETE Product
 - [x] Remove product from products array
 - [x] Return success message
 - [x] Test DELETE route
-- [ ] Git commit phase 5
+- [x] Git commit phase 5
+
+
+---
+
+## Current Phase
+PHASE 6 — Middleware and Error Handling
+
+## Progress Checklist
+
+- [x] Create custom logger middleware
+- [x] Log method, URL, and timestamp
+- [x] Add 404 handler for unknown routes
+- [x] Add global error handling middleware
+- [x] Keep response format consistent
+- [x] Test unknown route
+- [ ] Git commit phase 6

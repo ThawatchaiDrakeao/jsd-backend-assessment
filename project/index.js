@@ -24,6 +24,14 @@ const products = [
   },
 ];
 
+app.use((req, res, next) => {
+  const timestamp = new Date().toISOString();
+
+  console.log(`${timestamp} ${req.method} ${req.url}`);
+
+  next();
+});
+
 // express.json() lets Express read JSON request bodies from POST/PATCH requests.
 app.use(express.json());
 
@@ -151,6 +159,22 @@ app.delete("/products/:id", (req, res) => {
   res.json({
     success: true,
     message: "Product deleted successfully",
+  });
+});
+
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: "Something went wrong",
+  });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err);
+
+  res.status(500).json({
+    success: false,
+    message: "Something went wrong",
   });
 });
 
